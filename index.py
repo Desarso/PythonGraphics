@@ -112,17 +112,26 @@ class Drawingwindow:
         self.canvas.create_polygon(v1.x, v1.y, v2.x, v2.y, v3.x, v3.y, fill=color)
     
     def multiplyMatrixVector(self, input, output, matrix):
-        thingy = np.array_split(matrix.m, 3, 1)
-        first = np.concatenate((thingy[0], thingy[1]), axis=1)
-        second = thingy[2]
+        split3 = np.array_split(matrix.m, 3, 1)
+        appendRight = np.concatenate((split3[0], split3[1]), axis=1)
+        bottom = np.array_split(matrix.m, 4, 0)[3]
+        beforeBottom3 = np.array_split(bottom, 4, 1)
+        bottom3 = np.concatenate((beforeBottom3[0], beforeBottom3[1]), axis=1)
+        bottom3 = np.concatenate((bottom3, beforeBottom3[2]), axis=1)
+        RightSide = split3[2]
+        beforeR3 = np.array_split(RightSide, 3, 0)
+        right3 = np.concatenate((beforeR3[0], beforeR3[1]), axis=0)
+        before = np.array_split(appendRight, 3, 0)
+        Matrix3x3 = np.concatenate((before[0], before[1]), axis=0)
+        
        
-        print(np.array([input.components]))
         new =np.reshape(np.array([input.components]), (3,1))
-        print(new)
-        print(first)
-        print(np.matmul(first, new))
-        # # output = np.reshape(np.matmul(first, new), (3,))
-        # print(output)
+   
+
+        result = np.add(np.matmul(Matrix3x3, new), right3)
+        print(new, bottom3)
+        w = np.matmul(bottom3, new)[0][0]
+        print(w)
         
         
     def onUserCreate(self):
