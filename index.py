@@ -214,7 +214,7 @@ class Drawingwindow:
 
             self.root.update_idletasks()
             self.root.update()
-            time.sleep(0.1)
+            time.sleep(0.0166666667)
             self.redrawBackground(self.canvas, self.width, self.height)
             # self.draw_circle(testVar.x, testVar.y, 10, 'red')
             # testVar.x += 1
@@ -240,14 +240,14 @@ class Drawingwindow:
         matRotX = mat4x4()
 
 
-        self.fTheta += 1.0 * fElapsedTime.time
-        if(self.fTheta > 6.283185):
-            self.fTheta = 0
-            fElapsedTime.time = 0
+        self.fTheta += (.1)
+        # if(self.fTheta > 12.5663706144):
+        #     self.fTheta = 0
+        #     fElapsedTime.time = 0
         
 
         print(self.fTheta)
-        print(fElapsedTime.time)
+        # print(fElapsedTime.time)
 
         # print(self.fTheta)
         # print(np.cos(self.fTheta))

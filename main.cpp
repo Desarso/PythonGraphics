@@ -107,24 +107,24 @@ int main()
 		matRotX.m[2][2] = cosf(fTheta * 0.5f);
 		matRotX.m[3][3] = 1;
 
-        for (auto m : matRotZ.m)
-        {
-            for(int i = 0; i < 4; i++)
-            {
-                cout << m[i] << " ";
-            }
-            cout<< endl;
-        }
-        count << endl;
+        // for (auto m : matRotZ.m)
+        // {
+        //     for(int i = 0; i < 4; i++)
+        //     {
+        //         cout << m[i] << " ";
+        //     }
+        //     cout<< endl;
+        // }
+        // count << endl;
 
-           for (auto m : matRotX.m)
-        {
-            for(int i = 0; i < 4; i++)
-            {
-                cout << m[i] << " ";
-            }
-            cout<< endl;
-        }
+        //    for (auto m : matRotX.m)
+        // {
+        //     for(int i = 0; i < 4; i++)
+        //     {
+        //         cout << m[i] << " ";
+        //     }
+        //     cout<< endl;
+        // }
 
 
 
