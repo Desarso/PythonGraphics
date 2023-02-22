@@ -124,9 +124,11 @@ class Drawingwindow:
         return self.canvas.create_oval(x-radius, y-radius, x+radius, y+radius, fill=color)
 
     def draw_triangle(self, v1, v2, v3, color, width=1):
-        self.draw_line(v1, v2, color, width=width)
-        self.draw_line(v2, v3, color, width=width)
-        self.draw_line(v3, v1, color, width=width)
+        self.canvas.create_polygon(v1.x, v1.y, v2.x, v2.y, v3.x, v3.y, fill=color)
+        
+        # self.draw_line(v1, v2, color, width=width)
+        # self.draw_line(v2, v3, color, width=width)
+        # self.draw_line(v3, v1, color, width=width)
     
     def multiplyMatrixVector(self, input, output, matrix):
 
@@ -200,26 +202,25 @@ class Drawingwindow:
         
     
         
-    def redrawBackground(self, canvas, width, height):
+    def redrawBackground(self, canvas, width, height, fill="white"):
         canvas.delete("all")
-        canvas.create_rectangle(0, 0, width, height, fill="white")
+        canvas.create_rectangle(0, 0, width, height, fill=fill)
         canvas.pack()
 
     def mainloop(self):
         testVar = vec3d(100, 100, 0)
         fElapsedTime = elapsedTime()
-        fElapsedTime.time = 0
         print(fElapsedTime.time)
         while True:
 
             self.root.update_idletasks()
             self.root.update()
             time.sleep(0.0166666667)
-            self.redrawBackground(self.canvas, self.width, self.height)
+            fElapsedTime.time +=0.0166666667
+            self.redrawBackground(self.canvas, self.width, self.height, 'black')
             # self.draw_circle(testVar.x, testVar.y, 10, 'red')
             # testVar.x += 1
             self.OnUserUpdate(fElapsedTime)
-            fElapsedTime.time += .01
         
         
     def OnUserUpdate(self, fElapsedTime):
@@ -240,13 +241,13 @@ class Drawingwindow:
         matRotX = mat4x4()
 
 
-        self.fTheta += (.1)
+        self.fTheta = (fElapsedTime.time * 4)
         # if(self.fTheta > 12.5663706144):
         #     self.fTheta = 0
         #     fElapsedTime.time = 0
         
 
-        print(self.fTheta)
+        print(fElapsedTime.time)
         # print(fElapsedTime.time)
 
         # print(self.fTheta)
@@ -345,7 +346,7 @@ class Drawingwindow:
             # for p in triProjected.p:
             #     print(p.x, p.y, p.z)
 
-            self.draw_triangle(triProjected.p[0], triProjected.p[1], triProjected.p[2], 'black', 2)
+            self.draw_triangle(triProjected.p[0], triProjected.p[1], triProjected.p[2], 'white', 2)
     
  
 
